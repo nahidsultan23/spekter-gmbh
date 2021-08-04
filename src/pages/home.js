@@ -11,16 +11,18 @@ export class Home extends React.Component {
         posts: [],
     };
 
-    UNSAFE_componentWillMount() {
-        window.scrollTo(0, 0);
-    }
-
     componentDidMount() {
-        this.props.fetchPosts().then(() => {
+        if (this.props.fetchPostsReducer.payload && this.props.fetchPostsReducer.payload.length) {
             this.setState({
-                posts: this.props.postReducer.payload,
+                posts: this.props.fetchPostsReducer.payload,
             });
-        });
+        } else {
+            this.props.fetchPosts().then(() => {
+                this.setState({
+                    posts: this.props.fetchPostsReducer.payload,
+                });
+            });
+        }
     }
 
     renderPosts = (posts) => {
@@ -46,7 +48,7 @@ export class Home extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        postReducer: state.postReducer,
+        fetchPostsReducer: state.fetchPostsReducer,
         isFetchingPosts: createLoadingSelector(['FETCH_POSTS'])(state),
     };
 };

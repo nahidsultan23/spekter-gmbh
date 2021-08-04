@@ -1,7 +1,4 @@
 import {
-    FETCH_POSTS_REQUEST,
-    FETCH_POSTS_SUCCESS,
-    FETCH_POSTS_FAILURE,
     FETCH_POST_DETAILS_REQUEST,
     FETCH_POST_DETAILS_SUCCESS,
     FETCH_POST_DETAILS_FAILURE,
@@ -17,12 +14,6 @@ const initState = {};
 
 const reducer = (state = initState, action) => {
     switch (action.type) {
-        case FETCH_POSTS_REQUEST:
-            return { ...state };
-        case FETCH_POSTS_SUCCESS:
-            return { ...state, payload: action.payload };
-        case FETCH_POSTS_FAILURE:
-            return { ...state, payload: action.payload };
         case FETCH_POST_DETAILS_REQUEST:
             return { ...state };
         case FETCH_POST_DETAILS_SUCCESS:
