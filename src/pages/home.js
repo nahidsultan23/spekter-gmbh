@@ -28,7 +28,11 @@ export class Home extends React.Component {
     renderPosts = (posts) => {
         return posts.map((post) => {
             return (
-                <div key={post.id} onClick={() => this.props.history.push('/posts/' + post.id)}>
+                <div
+                    className="col-sm-6 col-md-4 col-lg-3 col-xl-2"
+                    key={post.id}
+                    onClick={() => this.props.history.push('/posts/' + post.id)}
+                >
                     {singlePost(post)}
                 </div>
             );
@@ -40,7 +44,15 @@ export class Home extends React.Component {
         const { isFetchingPosts } = this.props;
         return (
             <React.Fragment>
-                {isFetchingPosts ? 'Loading...' : posts && posts.length ? this.renderPosts(posts) : 'No post to show'}
+                <div className="element-container container-fluid">
+                    {isFetchingPosts ? (
+                        'Loading...'
+                    ) : posts && posts.length ? (
+                        <div className="row">{this.renderPosts(posts)}</div>
+                    ) : (
+                        'No post to show'
+                    )}
+                </div>
             </React.Fragment>
         );
     }
