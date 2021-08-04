@@ -2,3 +2,47 @@
 .element-container {
     max-width: 1800px;
 }
+
+.break-word {
+    word-break: break-word;
+}
+
+.middle-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.btn {
+    color: #ffffff;
+}
+
+/******* Single Post *******/
+.single-post {
+    margin-bottom: 30px;
+    padding: 5px 5px;
+    cursor: pointer;
+}
+
+.single-post:focus,
+.single-post:hover {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    -webkit-box-shadow: 0 0 10px #888687;
+    box-shadow: 0 0 10px #888687;
+}
+
+.single-post-photo {
+    width: 100%;
+}
+
+/******* Posts *******/
+.create-post-button-div {
+    height: 60px;
+    text-align: right;
+    margin-top: 20px;
+}

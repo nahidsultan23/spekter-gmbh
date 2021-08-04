@@ -5,6 +5,7 @@ import singlePost from '../components/singlePost';
 
 import { fetchPosts } from '../store/actions/postActions';
 import { createLoadingSelector } from '../store/selectors/createLoadingSelector';
+import loading from '../images/loading.gif';
 
 export class Home extends React.Component {
     state = {
@@ -45,12 +46,23 @@ export class Home extends React.Component {
         return (
             <React.Fragment>
                 <div className="element-container container-fluid">
+                    <div className="create-post-button-div">
+                        <button
+                            type="button"
+                            className="btn btn-primary"
+                            onClick={() => this.props.history.push('/posts/create')}
+                        >
+                            Create Post
+                        </button>
+                    </div>
                     {isFetchingPosts ? (
-                        'Loading...'
+                        <div className="middle-container">
+                            <img src={loading} alt="Loading" />
+                        </div>
                     ) : posts && posts.length ? (
                         <div className="row">{this.renderPosts(posts)}</div>
                     ) : (
-                        'No post to show'
+                        <div className="middle-container">No post to show</div>
                     )}
                 </div>
             </React.Fragment>
