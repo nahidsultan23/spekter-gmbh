@@ -19,6 +19,10 @@
     color: #ffffff;
 }
 
+.top-space {
+    height: 50px;
+}
+
 /******* Single Post *******/
 .single-post {
     margin-bottom: 30px;
@@ -45,4 +49,28 @@
     height: 60px;
     text-align: right;
     margin-top: 20px;
+}
+
+/******* Post Details *******/
+.post-details {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.delete-button-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/******* Create Post *******/
+.post-creation-form .form-group {
+    line-height: 50px;
+}
+
+.create-post-button-container {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -2,14 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { createPost } from '../store/actions/postActions';
-import { createLoadingSelector } from '../store/selectors/createLoadingSelector';
 
 export class CreatePost extends React.Component {
     state = {
         userId: '',
         title: '',
         body: '',
-        error: '',
     };
 
     onValueChange = (e) => {
@@ -21,56 +19,63 @@ export class CreatePost extends React.Component {
     onSubmitForm = (e) => {
         e.preventDefault();
 
-        let obj = {
-            userId: this.state.userId,
-            title: this.state.title,
-            body: this.state.body,
-        };
-
-        this.props.createPost(obj).then(() => {
-            const { id } = this.props.postReducer.payload;
-
-            if (!id) {
-                this.setState({
-                    error: 'Post was not created',
-                });
-            }
+        this.props.createPost(this.state).then(() => {
+            console.log(this.props.postReducer.payload);
+            this.props.history.push('/');
         });
     };
 
     render() {
-        const { isCreatingPost } = this.props;
         return (
             <React.Fragment>
-                <form
-                    onSubmit={(e) => {
-                        this.onSubmitForm(e);
-                    }}
-                >
-                    <div>
-                        <div>
-                            <div>User Id</div>
-                            <div>
-                                <input type="text" name="userId" onChange={(e) => this.onValueChange(e)} />
+                <div className="element-container container-fluid">
+                    <div className="top-space"></div>
+                    <div className="row post-details">
+                        <form
+                            className="post-creation-form"
+                            onSubmit={(e) => {
+                                this.onSubmitForm(e);
+                            }}
+                        >
+                            <div className="form-group">
+                                <label htmlFor="userId">User Id</label>
+                                <input
+                                    type="text"
+                                    name="userId"
+                                    className="form-control"
+                                    id="userId"
+                                    placeholder="Enter user id"
+                                    onChange={(e) => this.onValueChange(e)}
+                                />
                             </div>
-                        </div>
-                        <div>
-                            <div>Title</div>
-                            <div>
-                                <input type="text" name="title" onChange={(e) => this.onValueChange(e)} />
+                            <div className="form-group">
+                                <label htmlFor="title">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    className="form-control"
+                                    id="title"
+                                    placeholder="Enter Title"
+                                    onChange={(e) => this.onValueChange(e)}
+                                />
                             </div>
-                        </div>
-                        <div>
-                            <div>Body</div>
-                            <div>
-                                <input type="text" name="body" onChange={(e) => this.onValueChange(e)} />
+                            <div className="form-group">
+                                <label htmlFor="body">Body</label>
+                                <input
+                                    type="text"
+                                    name="body"
+                                    className="form-control"
+                                    id="body"
+                                    placeholder="Enter body"
+                                    onChange={(e) => this.onValueChange(e)}
+                                />
                             </div>
-                        </div>
+                            <div className="create-post-button-container">
+                                <button className="btn btn-primary">Create Post</button>
+                            </div>
+                        </form>
                     </div>
-                    <div>
-                        <button>Create Post</button>
-                    </div>
-                </form>
+                </div>
             </React.Fragment>
         );
     }
@@ -79,7 +84,6 @@ export class CreatePost extends React.Component {
 const mapStateToProps = (state) => {
     return {
         postReducer: state.postReducer,
-        isCreatingPost: createLoadingSelector(['CREATE_POST'])(state),
     };
 };
 
